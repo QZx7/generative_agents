@@ -220,6 +220,7 @@ def GPT_request(prompt, gpt_parameter):
         response = client.completions.create(
             model=gpt_parameter["engine"],
             prompt=prompt,
+            # messages=[{"role": "user", "content": prompt}],
             temperature=gpt_parameter["temperature"],
             max_tokens=gpt_parameter["max_tokens"],
             top_p=gpt_parameter["top_p"],
@@ -229,7 +230,8 @@ def GPT_request(prompt, gpt_parameter):
             stop=gpt_parameter["stop"],
         )
         return response.choices[0].text
-    except:
+    except Exception as e:
+        print(e)
         print("TOKEN LIMIT EXCEEDED")
         return "TOKEN LIMIT EXCEEDED"
 
