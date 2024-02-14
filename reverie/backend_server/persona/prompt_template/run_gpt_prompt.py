@@ -395,6 +395,7 @@ def run_gpt_prompt_task_decomp(persona, task, duration, test_input=None, verbose
 
         # TODO SOMETHING HERE sometimes fails... See screenshot
         temp = [i.strip() for i in gpt_response.split("\n")]
+        print(f"TEMP: {temp}")
         _cr = []
         cr = []
         for count, i in enumerate(temp):
@@ -402,6 +403,7 @@ def run_gpt_prompt_task_decomp(persona, task, duration, test_input=None, verbose
                 _cr += [" ".join([j.strip() for j in i.split(" ")][3:])]
             else:
                 _cr += [i]
+        print(f"_CR:{_cr}")
         for count, i in enumerate(_cr):
             k = [j.strip() for j in i.split("(duration in minutes:")]
             task = k[0]
