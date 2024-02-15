@@ -117,10 +117,10 @@ def home(request):
     f_curr_sim_code = "temp_storage/curr_sim_code.json"
     f_curr_step = "temp_storage/curr_step.json"
 
-    if not check_if_file_exists(f_curr_step):
-        context = {}
-        template = "home/error_start_backend.html"
-        return render(request, template, context)
+    # if not check_if_file_exists(f_curr_step):
+    #     context = {}
+    #     template = "home/error_start_backend.html"
+    #     return render(request, template, context)
 
     with open(f_curr_sim_code) as json_file:
         sim_code = json.load(json_file)["sim_code"]
@@ -128,7 +128,9 @@ def home(request):
     with open(f_curr_step) as json_file:
         step = json.load(json_file)["step"]
 
-    os.remove(f_curr_step)
+    print("removing steps")
+    # os.remove(f_curr_step)
+    print("removed steps")
 
     persona_names = []
     persona_names_set = set()
