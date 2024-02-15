@@ -393,8 +393,14 @@ def run_gpt_prompt_task_decomp(persona, task, duration, test_input=None, verbose
         print(gpt_response)
         print("-==- -==- -==- ")
 
+        temp = []
         # TODO SOMETHING HERE sometimes fails... See screenshot
-        temp = [i.strip() for i in gpt_response.split("\n")]
+        task_regex = r".*?\(duration in minutes: \d+, minutes left: \d+\)"
+
+        for i in gpt_response.split("\n"):
+            if re.match(task_regex, i):
+                temp.append(i.strip())
+        # temp = [i.strip() for i in gpt_response.split("\n")]
         print(f"TEMP: {temp}")
         _cr = []
         cr = []

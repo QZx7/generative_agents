@@ -133,6 +133,11 @@ class ReverieServer:
                 curr_persona.scratch.get_curr_event_and_desc()
             )
 
+        # Creating movement folder
+        movement_dir = f"{sim_folder}/movement"
+        if not os.path.exists(movement_dir):
+            os.mkdir(movement_dir)
+
         # REVERIE SETTINGS PARAMETERS:
         # <server_sleep> denotes the amount of time that our while loop rests each
         # cycle; this is to not kill our machine.
@@ -423,7 +428,7 @@ class ReverieServer:
                     #  "persona": {"Klaus Mueller": {"movement": [38, 12]}},
                     #  "meta": {curr_time: <datetime>}}
                     curr_move_file = f"{sim_folder}/movement/{self.step}.json"
-                    with open(curr_move_file, "w") as outfile:
+                    with open(curr_move_file, "w+") as outfile:
                         outfile.write(json.dumps(movements, indent=2))
 
                     # After this cycle, the world takes one step forward, and the
